@@ -19,7 +19,7 @@ export default class WeatherDetailScreen extends React.Component {
 
   componentDidMount() {
     const { navigation } = this.props;
-    const city = navigation.getParam('city', null); // 강사님이 이미 만들어 주신거...
+    const city = navigation.getParam('city', null); // 강사님이 이미 만들어 주신거....
     
     // const city = 'Daejeon';
 
