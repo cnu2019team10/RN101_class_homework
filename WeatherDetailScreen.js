@@ -19,10 +19,12 @@ export default class WeatherDetailScreen extends React.Component {
 
   componentDidMount() {
     const { navigation } = this.props;
-    // const city = navigation.getParam('city', null);
-    const city = 'Daejeon';
+    const city = navigation.getParam('city', null); // 강사님이 이미 만들어 주신거...
+    
+    // const city = 'Daejeon';
 
-    fetch(`http://demo6468405.mockable.io/weather-crawlers/current-weathers/by-city-name/${city}`)
+    // fetch(`http://demo6468405.mockable.io/weather-crawlers/current-weathers/by-city-name/${city}`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=75536a824749c77d655cf1aaa9807a6e&q=${city}`) // 저번 실습 React-naive 과제에서 했던 api를 가져옴.
       .then(response => response.json())
       .then(info => {
         this.setState({
@@ -41,10 +43,15 @@ export default class WeatherDetailScreen extends React.Component {
       )
     }
 
+    let city_id = this.state.weather.id;
+
+    let pressure = this.state.main.pressure;
     let celsius = this.state.main.temp - 273.15;
 
     return (
       <View style={styles.container}>
+        <Text>City Id: {city_id}</Text>
+        <Text>기압: {pressure}</Text>
         <Text>온도: {celsius.toFixed(1)}</Text>
       </View>
     );
