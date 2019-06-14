@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Constants } from 'expo';
+import { Font } from 'expo';
+
 
 export default class WeatherDetailScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -17,10 +19,14 @@ export default class WeatherDetailScreen extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { navigation } = this.props;
     const city = navigation.getParam('city', null); // 강사님이 이미 만들어 주신거....
-    
+    await Font.loadAsync({
+      'OpenSans-Bold' : require('./assets/fonts/OpenSans-Bold.ttf'),
+      'BMHANNA' : require('./assets/fonts/BMHANNA_11yrs_ttf.ttf'),
+    });
+    this.setState({fontLoaded: true});
     // const city = 'Daejeon';
 
     // fetch(`http://demo6468405.mockable.io/weather-crawlers/current-weathers/by-city-name/${city}`)
@@ -44,15 +50,23 @@ export default class WeatherDetailScreen extends React.Component {
     }
 
     let city_id = this.state.weather.id;
+    let city_name = this.state.name;
 
     let pressure = this.state.main.pressure;
     let celsius = this.state.main.temp - 273.15;
 
     return (
       <View style={styles.container}>
-        <Text>City Id: {city_id}</Text>
+        {this.state.fontLoaded ? (
+            <Text style={styles.title}>
+              {city_name} 의 날씨
+
+            </Text>
+          ) : null
+        }
+
         <Text>기압: {pressure}</Text>
-        <Text>온도: {celsius.toFixed(1)}</Text>
+        <Text>온도: {celsius.toFixed(1)} °C</Text>
       </View>
     );
   }
@@ -63,5 +77,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     marginTop: Constants.statusBarHeight,
+
+  },
+  title: {
+    fontSize: 25,
+    textAlign: 'center',
+    fontFamily: 'BMHANNA',
+    color: 'purple',
   },
 });
