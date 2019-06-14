@@ -25,6 +25,7 @@ export default class WeatherDetailScreen extends React.Component {
     await Font.loadAsync({
       'OpenSans-Bold' : require('./assets/fonts/OpenSans-Bold.ttf'),
       'BMHANNA' : require('./assets/fonts/BMHANNA_11yrs_ttf.ttf'),
+      'joseon' : require('./assets/fonts/joseon.ttf'),
     });
     this.setState({fontLoaded: true});
     // const city = 'Daejeon';
@@ -93,17 +94,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: Constants.statusBarHeight,
+    //marginTop: Constants.statusBarHeight,
+    borderTopWidth: 100,
+    borderTopColor: '#fff',
 
   },
   title: {
     fontSize: 25,
     textAlign: 'center',
-    fontFamily: 'BMHANNA',
-    color: 'purple',
+    fontFamily: 'joseon',
+    color: 'black',
+
   },
   content: {
     fontSize: 18,
+    fontFamily: 'joseon',
+    height: 30,
     textAlign: 'center',
   },
   icon: {
@@ -111,4 +117,9 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
+  loading: {
+      fontSize: 18,
+      textAlign: 'center',
+      //fontFamily: 'joseon',
+    },
 });
