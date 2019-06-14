@@ -45,7 +45,11 @@ export default class WeatherDetailScreen extends React.Component {
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
-          <Text style={styles.loading}>데이터를 불러오는 중입니다.</Text>
+          {
+            this.state.fontLoaded ? (
+                <Text style={styles.loading}>데이터를 불러오는 중입니다.</Text>
+            ): null
+          }
         </View>
       )
     }
