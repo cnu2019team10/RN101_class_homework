@@ -7,7 +7,7 @@ import { Font } from 'expo';
 export default class WeatherDetailScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: `Weather Info: ${navigation.getParam('city', 'Unknown')}`,
+      title: `${navigation.getParam('city', 'Unknown')}`,
     };
   };
 
@@ -45,7 +45,7 @@ export default class WeatherDetailScreen extends React.Component {
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
-          <Text>데이터를 불러오는 중입니다.</Text>
+          <Text style={styles.loading}>데이터를 불러오는 중입니다.</Text>
         </View>
       )
     }
@@ -94,13 +94,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    //marginTop: Constants.statusBarHeight,
-    borderTopWidth: 100,
+    borderTopWidth: 150,
     borderTopColor: '#fff',
 
   },
   title: {
-    fontSize: 25,
+    fontSize: 28,
     textAlign: 'center',
     fontFamily: 'joseon',
     color: 'black',
@@ -120,6 +119,8 @@ const styles = StyleSheet.create({
   loading: {
       fontSize: 18,
       textAlign: 'center',
-      //fontFamily: 'joseon',
+      borderTopWidth: 200,
+      borderTopColor: '#fff',
+      fontFamily: 'joseon',
     },
 });
