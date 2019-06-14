@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { Constants } from 'expo';
 import { Font } from 'expo';
 
@@ -57,6 +57,13 @@ export default class WeatherDetailScreen extends React.Component {
     let temp_min = this.state.main.temp_min - 273.15;
     let temp_max = this.state.main.temp_max - 273.15;
 
+    let weather_json = this.state.weather;
+    // let weather_json_str = JSON.stringify(weather_json);
+    // console.log(weather_json_str);
+    // console.log(weather_json[0]);
+    // console.log(weather_json[0].icon);
+
+
     return (
       <View style={styles.container}>
         {this.state.fontLoaded ? (
@@ -67,10 +74,16 @@ export default class WeatherDetailScreen extends React.Component {
           ) : null
         }
 
-        <Text>기압: {pressure} hPa</Text>
-        <Text>온도: {celsius.toFixed(1)} °C</Text>
-        <Text>최고기온: {temp_min.toFixed(1)} °C</Text>
-        <Text>최저기온: {temp_max.toFixed(1)} °C</Text>
+        <Text></Text>
+        {/*<Image source={{uri: 'http://openweathermap.org/img/w/' + weather_json[0].icon + '.png'}} />*/}
+        <Image
+            style={styles.icon}
+            source={{uri: 'http://openweathermap.org/img/w/' + weather_json[0].icon + '.png'}}
+        />
+        <Text style={styles.content}>기압: {pressure} hPa</Text>
+        <Text style={styles.content}>온도: {celsius.toFixed(1)} °C</Text>
+        <Text style={styles.content}>최고기온: {temp_min.toFixed(1)} °C</Text>
+        <Text style={styles.content}>최저기온: {temp_max.toFixed(1)} °C</Text>
       </View>
     );
   }
@@ -88,5 +101,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'BMHANNA',
     color: 'purple',
+  },
+  content: {
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  icon: {
+    alignSelf: 'center',
+    width: 100,
+    height: 100,
   },
 });
