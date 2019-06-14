@@ -54,6 +54,8 @@ export default class WeatherDetailScreen extends React.Component {
 
     let pressure = this.state.main.pressure;
     let celsius = this.state.main.temp - 273.15;
+    let temp_min = this.state.main.temp_min - 273.15;
+    let temp_max = this.state.main.temp_max - 273.15;
 
     return (
       <View style={styles.container}>
@@ -65,8 +67,10 @@ export default class WeatherDetailScreen extends React.Component {
           ) : null
         }
 
-        <Text>기압: {pressure}</Text>
+        <Text>기압: {pressure} hPa</Text>
         <Text>온도: {celsius.toFixed(1)} °C</Text>
+        <Text>최고기온: {temp_min.toFixed(1)} °C</Text>
+        <Text>최저기온: {temp_max.toFixed(1)} °C</Text>
       </View>
     );
   }
